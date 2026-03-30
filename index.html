@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransPoint | AI Translation with Phonetics & Word Mapping</title>
+    <meta name="description" content="TransPoint is an AI-powered translation tool that provides original text, phonetics (pronunciation), and meanings with word-by-word mapping.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <!-- Navbar -->
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
+            <a href="/" class="text-2xl font-black text-blue-600 tracking-tighter">TransPoint</a>
+            <div class="hidden md:flex space-x-8 font-semibold text-slate-600">
+                <a href="/pricing" class="hover:text-blue-600 transition">Pricing</a>
+                <a href="/setup" class="hover:text-blue-600 transition">Setup Guide</a>
+                <a href="/support" class="hover:text-blue-600 transition">Support</a>
+            </div>
+            <a href="/pricing" class="bg-blue-600 text-white px-5 py-2 rounded-full font-bold text-sm hover:bg-blue-700 transition">Get PRO</a>
+        </div>
+    </nav>
+
+    <!-- Hero / Translator Section -->
+    <header class="max-w-4xl mx-auto py-16 px-4">
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-black mb-4 tracking-tight">Translate, <span class="text-blue-600">Pronounce</span>, and Master.</h1>
+            <p class="text-lg text-slate-500 font-medium tracking-tight">The first AI translator that maps words to their phonetic readings instantly.</p>
+        </div>
+
+        <div class="bg-white p-2 rounded-3xl shadow-2xl shadow-blue-100 border border-slate-100">
+            <textarea id="inputText" class="w-full h-44 p-6 text-lg bg-transparent outline-none resize-none" placeholder="Paste text here to see the magic... (Free 50 chars)"></textarea>
+            <div class="p-4 border-t border-slate-50 flex justify-between items-center bg-slate-50/50 rounded-b-2xl">
+                <select id="targetLang" class="bg-white border border-slate-200 rounded-xl px-4 py-2 font-bold text-sm outline-none">
+                    <option value="Korean">to Korean</option>
+                    <option value="English">to English</option>
+                    <option value="Japanese">to Japanese</option>
+                    <option value="Spanish">to Spanish</option>
+                </select>
+                <button onclick="handleTranslate()" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:shadow-lg hover:scale-[1.02] transition-all">Translate Now</button>
+            </div>
+        </div>
+
+        <!-- Result Area -->
+        <div id="resultArea" class="mt-12 space-y-4 hidden">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                    <span class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Original</span>
+                    <p id="resOriginal" class="mt-2 text-lg font-medium"></p>
+                </div>
+                <div class="bg-blue-600 p-6 rounded-2xl shadow-xl shadow-blue-200 text-white">
+                    <span class="text-[10px] font-black uppercase text-blue-200 tracking-widest">Phonetics (Reading)</span>
+                    <p id="resPhonetic" class="mt-2 text-2xl font-black"></p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                    <span class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Meaning</span>
+                    <p id="resTranslate" class="mt-2 text-lg font-medium"></p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Buy Me a Coffee Section -->
+    <div class="py-10 text-center">
+        <p class="text-slate-400 text-sm font-bold uppercase tracking-widest mb-4">Support the Project</p>
+        <a href="https://www.buymeacoffee.com/djawjdaks8g" target="_blank">
+            <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=djawjdaks8g&button_colour=FFDD00&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=FFFFFF" class="mx-auto h-12 shadow-xl hover:scale-105 transition">
+        </a>
+    </div>
+
+    <!-- SEO: Features Section -->
+    <section class="max-w-6xl mx-auto py-24 px-4 border-t border-slate-100">
+        <h2 class="text-3xl font-black text-center mb-16 italic">"Why settle for just a translation?"</h2>
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl">
+                    <i class="fa-solid fa-language"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Phonetic Reading</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">Most translators give you the meaning. We give you the sound. Read any language instantly without knowing the alphabet.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl">
+                    <i class="fa-solid fa-list-ol"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Word-to-Word Mapping</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">Don't guess which word means what. Our numbered mapping system connects original words to translations perfectly.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl">
+                    <i class="fa-solid fa-sidebar"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Side-Panel Extension</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">Browse the web and translate in real-time. No more tab switching. Everything happens in your browser's side panel.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-20">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <h4 class="text-xl font-black text-blue-400 mb-4 tracking-tighter">TransPoint</h4>
+                <p class="text-slate-400 text-sm">Empowering global learners to read, speak, and understand the web.</p>
+            </div>
+            <div class="flex flex-col space-y-3">
+                <h4 class="font-bold text-slate-200">Resources</h4>
+                <a href="/pricing" class="text-slate-400 hover:text-white transition text-sm">Pricing</a>
+                <a href="/privacy" class="text-slate-400 hover:text-white transition text-sm">Privacy Policy</a>
+                <a href="/terms" class="text-slate-400 hover:text-white transition text-sm">Terms of Service</a>
+            </div>
+            <div>
+                <h4 class="font-bold text-slate-200">Contact</h4>
+                <p class="text-slate-400 text-sm italic">Questions? Reach out to us:</p>
+                <a href="mailto:offthemain@proton.me" class="text-blue-400 font-bold hover:underline">offthemain@proton.me</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
