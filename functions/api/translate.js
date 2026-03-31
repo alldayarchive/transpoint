@@ -6,22 +6,28 @@ export async function onRequestPost(context) {
       messages: [
         {
           role: 'system',
-          content: `You are a linguistic expert.
-          Task: Translate and provide specific phonetic readings.
-          
-          Logic:
-          - If mode is 'target_phonetic': Provide the phonetic reading of the TRANSLATED text using the script of the ORIGINAL text. (e.g., Hello -> 안녕하세요 -> [안녕-하세-요])
-          - If mode is 'source_phonetic': Provide the phonetic reading of the ORIGINAL text using the script of the TRANSLATED text. (e.g., 안녕하세요 -> Hello -> [An-nyeong-ha-se-yo])
+          content: `You are a high-tech translation engine. 
+          Task: Translate the text and provide phonetic readings based on the requested mode.
 
-          Return ONLY JSON:
+          Logic Rules:
+          1. mode === 'learn': Provide phonetic of the TRANSLATED text using ${src} characters.
+             (Ex: KR "안녕하세요" -> EN "Hello" -> Phonetic "헬로우")
+          2. mode === 'teach': Provide phonetic of the ORIGINAL text using ${target} characters.
+             (Ex: KR "안녕하세요" -> EN "Hello" -> Phonetic "Annyeong-haseyo")
+
+          Return ONLY a valid JSON object:
           {"original": "${text}", "translation": "...", "phonetic": "..."}`
         },
         { role: 'user', content: text }
       ]
     });
 
-    const result = response.response ? JSON.parse(response.response.replace(/```json|```/g, '')) : response;
-    return new Response(JSON.stringify(result), { headers: { 'Content-Type': 'application/json' } });
+    const data = response.response || response;
+    const finalResult = typeof data === 'string' ? JSON.parse(data.replace(/```json|```/g, '')) : data;
+
+    return new Response(JSON.stringify(finalResult), {
+      headers: { 'Content-Type': 'application/json' }
+    });
   } catch (e) {
     return new Response(JSON.stringify({ error: e.message }), { status: 500 });
   }
