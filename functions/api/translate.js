@@ -6,17 +6,17 @@ export async function onRequestPost(context) {
       messages: [
         {
           role: 'system',
-          content: `You are a high-tech translation engine. 
-          Task: Translate the text and provide phonetic readings based on the requested mode.
+          content: `You are a professional linguist. Output ONLY valid JSON. No talk.
+          
+          TASK:
+          1. Translate text from ${src} to ${target}.
+          2. Provide PHONETIC reading based on "mode":
+             - If mode is "learn": Phonetic of TRANSLATED text using characters of ${src}. 
+               (Ex: KR "안녕하세요" -> EN "Hello" -> Phonetic "헬로우")
+             - If mode is "teach": Phonetic of ORIGINAL text using characters of ${target}. 
+               (Ex: KR "안녕하세요" -> EN "Hello" -> Phonetic "Annyeong-haseyo")
 
-          Logic Rules:
-          1. mode === 'learn': Provide phonetic of the TRANSLATED text using ${src} characters.
-             (Ex: KR "안녕하세요" -> EN "Hello" -> Phonetic "헬로우")
-          2. mode === 'teach': Provide phonetic of the ORIGINAL text using ${target} characters.
-             (Ex: KR "안녕하세요" -> EN "Hello" -> Phonetic "Annyeong-haseyo")
-
-          Return ONLY a valid JSON object:
-          {"original": "${text}", "translation": "...", "phonetic": "..."}`
+          FORMAT: {"original": "...", "translation": "...", "phonetic": "..."}`
         },
         { role: 'user', content: text }
       ]
