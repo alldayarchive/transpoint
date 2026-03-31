@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TransPoint PRO | Digital AI Phonetic Hub</title>
+    <title>TransPoint PRO | Global AI Translation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
-    <!-- [AD] Adstella Popunder -->
+    <!-- [AD 1] Adstella Popunder -->
     <script src="https://pl29018797.profitablecpmratenetwork.com/79/bd/2b/79bd2b3532f7c91f511989459e2c6acf.js"></script>
-    <!-- [AD] Adstella Social Bar -->
+    <!-- [AD 2] Adstella Social Bar -->
     <script src="https://pl29018799.profitablecpmratenetwork.com/5c/15/cb/5c15cbfea47513cdbf0692fbc831931e.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; }
-        .digital-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 2.5rem; }
-        .phonetic-glow { font-size: 4rem; font-weight: 800; color: #60a5fa; text-shadow: 0 0 30px rgba(37, 99, 235, 0.5); }
-        .node-box { background: #0f172a; border: 1px solid #1e293b; border-radius: 1.5rem; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 140px; }
-        .node-box:hover { border-color: #2563eb; transform: translateY(-5px); }
-        select { background: #1e293b; border: 1px solid #334155; border-radius: 0.75rem; padding: 0.5rem; font-size: 0.75rem; color: white; outline: none; }
+        .digital-box { background: #0f172a; border: 1px solid #1e293b; border-radius: 2rem; }
+        .neon-glow { border: 1px solid #2563eb; box-shadow: 0 0 30px rgba(37,99,235,0.2); }
+        .node-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 1.5rem; height: 120px; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .node-card:hover { border-color: #2563eb; transform: translateY(-5px); }
     </style>
 </head>
 <body class="p-6">
@@ -31,59 +30,69 @@
     </nav>
 
     <main class="max-w-4xl mx-auto">
-        <section class="digital-card overflow-hidden mb-8">
+        <!-- Input Terminal -->
+        <section class="digital-box overflow-hidden mb-8">
             <textarea id="inputText" class="w-full h-48 p-10 bg-transparent text-2xl font-bold outline-none placeholder:text-slate-800 resize-none" placeholder="Enter signal..."></textarea>
-            <div class="p-8 bg-black/20 border-t border-slate-800 flex flex-wrap justify-between items-center gap-4">
-                <div class="flex items-center space-x-3">
-                    <select id="srcLang"><option value="Korean">Korean</option><option value="English">English</option></select>
-                    <select id="targetLang"><option value="English">English</option><option value="Korean">Korean</option></select>
-                    <select id="phoneticMode" class="text-blue-400 border-blue-900">
-                        <option value="learn">Learn (Ex: 헬로우)</option>
-                        <option value="teach">Teach (Ex: Annyeong)</option>
+            <div class="p-8 bg-black/20 border-t border-slate-800 flex flex-wrap justify-between items-center gap-6">
+                <div class="flex items-center space-x-4">
+                    <select id="srcLang" class="bg-slate-800 border border-slate-700 rounded-xl p-2 text-xs font-bold"><option value="Korean">Korean</option><option value="English">English</option></select>
+                    <select id="targetLang" class="bg-slate-800 border border-slate-700 rounded-xl p-2 text-xs font-bold text-blue-400"><option value="English">English</option><option value="Korean">Korean</option></select>
+                    <select id="phoneticMode" class="bg-blue-900/20 border border-blue-800 rounded-xl p-2 text-[10px] font-black uppercase text-blue-400">
+                        <option value="learn">Learn (헬로우)</option><option value="teach">Teach (Annyeong)</option>
                     </select>
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                        <input type="checkbox" id="includePhonetic" checked class="w-4 h-4 accent-blue-600">
+                        <span class="text-[10px] font-black uppercase text-slate-400">Add Phonetic</span>
+                    </label>
                 </div>
-                <button onclick="process()" id="runBtn" class="bg-blue-600 text-white px-10 py-3 rounded-2xl font-black uppercase text-xs shadow-lg">Analyze Now</button>
+                <button onclick="process()" id="runBtn" class="bg-blue-600 text-white px-12 py-3 rounded-2xl font-black uppercase text-xs shadow-lg hover:bg-blue-500 transition">Analyze</button>
             </div>
         </section>
 
-        <!-- [AD] Adstella Native Banner -->
-        <div class="mb-8 rounded-3xl overflow-hidden border border-slate-800">
+        <!-- [AD 3] Adstella Native Banner -->
+        <div class="mb-8 rounded-3xl overflow-hidden border border-slate-800 bg-black/40">
             <script async="async" data-cfasync="false" src="https://pl29018798.profitablecpmratenetwork.com/63307b850bab2dc6d8d60fe1d4010b48/invoke.js"></script>
             <div id="container-63307b850bab2dc6d8d60fe1d4010b48"></div>
         </div>
 
+        <!-- [THE MASTER RESULT BOX] - Unified for easy copying -->
         <section id="resultArea" class="hidden mb-12 animate-in fade-in zoom-in-95 duration-500">
-            <div class="digital-card p-12 text-center">
-                <span class="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] mb-4 block italic">AI Phonetic Readout</span>
-                <p id="resPhonetic" class="phonetic-glow mb-12">...</p>
-                <div class="grid grid-cols-2 gap-8 border-t border-slate-800 pt-10">
-                    <div class="text-left"><span class="text-[9px] font-black text-slate-700 uppercase block mb-2">Source</span><p id="resOriginal" class="text-lg font-bold text-slate-500 italic"></p></div>
-                    <div class="text-right border-l border-slate-800 pl-8"><span class="text-[9px] font-black text-blue-900 uppercase block mb-2">Translation</span><p id="resTranslate" class="text-2xl font-black text-white"></p></div>
+            <div class="digital-box neon-glow p-10 relative overflow-hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-[10px] font-black text-blue-500 uppercase tracking-[0.5em] italic">Decoded Master Signal</span>
+                    <button onclick="copyAll()" class="text-[10px] font-black bg-slate-800 px-4 py-1.5 rounded-lg text-slate-400 hover:text-white transition">COPY ALL</button>
+                </div>
+                <!-- 통합 텍스트 영역 -->
+                <div id="masterText" class="text-3xl font-black leading-snug whitespace-pre-wrap selection:bg-blue-500"></div>
+                
+                <div class="mt-8 pt-8 border-t border-slate-800 text-[9px] font-bold text-slate-500 uppercase tracking-widest italic">
+                    Original Trace: <span id="traceOriginal" class="text-slate-600 ml-2"></span>
                 </div>
             </div>
         </section>
 
-        <!-- Symmetrical Nodes -->
+        <!-- Nord Affiliate Nodes (Perfect Symmetry) -->
         <div class="grid grid-cols-2 gap-4 mb-12">
-            <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=141918&url_id=23180" target="_blank" class="node-box">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white mb-2 shadow-lg"><i class="fa-solid fa-shield-halved"></i></div>
-                <span class="text-[10px] font-black uppercase">NordVPN</span>
+            <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=141918&url_id=23180" target="_blank" class="node-card">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white mb-2 shadow-lg shadow-blue-900/40"><i class="fa-solid fa-shield-halved"></i></div>
+                <span class="text-[10px] font-black">NordVPN</span>
             </a>
-            <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=141918&url_id=32566" target="_blank" class="node-box">
-                <div class="w-10 h-10 bg-slate-700 rounded-xl flex items-center justify-center text-white mb-2 shadow-lg"><i class="fa-solid fa-key"></i></div>
-                <span class="text-[10px] font-black uppercase">NordPass</span>
+            <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=141918&url_id=32566" target="_blank" class="node-card">
+                <div class="w-10 h-10 bg-slate-700 rounded-xl flex items-center justify-center text-white mb-2 shadow-lg shadow-black/20"><i class="fa-solid fa-key"></i></div>
+                <span class="text-[10px] font-black">NordPass</span>
             </a>
         </div>
 
-        <a href="/pricing" class="block bg-gradient-to-r from-blue-900 to-indigo-950 p-8 rounded-[2.5rem] border border-blue-800/50 text-center shadow-2xl hover:scale-[1.01] transition">
-            <h3 class="text-white font-black text-xl tracking-tight uppercase">Activate Unlimited PRO</h3>
+        <a href="/pricing" class="block bg-gradient-to-r from-blue-900 to-indigo-950 p-8 rounded-[2rem] border border-blue-800/40 text-center shadow-2xl hover:scale-[1.01] transition">
+            <h3 class="text-white font-black text-xl tracking-tight italic">ACTIVATE UNLIMITED PRO TERMINAL</h3>
         </a>
     </main>
 
-    <footer class="mt-20 py-12 border-t border-slate-900 text-center">
-        <a href="https://www.buymeacoffee.com/djawjdaks8g" target="_blank" class="hover:scale-105 transition inline-block mb-8">
+    <footer class="mt-24 py-12 border-t border-slate-900 text-center flex flex-col items-center">
+        <a href="https://www.buymeacoffee.com/djawjdaks8g" target="_blank" class="mb-8 hover:scale-105 transition inline-block">
             <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=djawjdaks8g&button_colour=ffffff&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00" class="h-10 rounded-xl">
         </a>
+        <p class="text-[9px] font-black text-slate-800 uppercase tracking-[0.5em]">Clarity Hub © 2026</p>
     </footer>
 
     <script>
@@ -91,7 +100,7 @@
             const text = document.getElementById('inputText').value;
             if(!text) return;
             const btn = document.getElementById('runBtn');
-            btn.disabled = true; btn.innerText = "Analyzing...";
+            btn.disabled = true; btn.innerText = "Processing...";
 
             try {
                 const res = await fetch('/api/translate', {
@@ -101,16 +110,25 @@
                         text,
                         src: document.getElementById('srcLang').value,
                         target: document.getElementById('targetLang').value,
-                        mode: document.getElementById('phoneticMode').value
+                        mode: document.getElementById('phoneticMode').value,
+                        includePhonetic: document.getElementById('includePhonetic').checked
                     })
                 });
-                const result = await res.json();
-                document.getElementById('resOriginal').innerText = text;
-                document.getElementById('resPhonetic').innerText = result.phonetic;
-                document.getElementById('resTranslate').innerText = result.translation;
+                const r = await response.json();
+                const result = r.response ? JSON.parse(r.response.replace(/```json|```/g, '')) : r;
+                
+                // [통합 결과 로직] 사장님 요청대로 크게 한 칸에 모읍니다.
+                const phoneticLine = result.phonetic ? `\n(${result.phonetic})` : '';
+                document.getElementById('masterText').innerText = `${result.translation}${phoneticLine}`;
+                document.getElementById('traceOriginal').innerText = text;
                 document.getElementById('resultArea').classList.remove('hidden');
-            } catch (e) { alert("Translation Logic Error. Please check AI Bindings."); }
-            finally { btn.disabled = false; btn.innerText = "Analyze Now"; }
+                
+            } catch (e) { alert("AI Warm-up failed. Retry in 3s."); }
+            finally { btn.disabled = false; btn.innerText = "Analyze"; }
+        }
+        function copyAll() {
+            navigator.clipboard.writeText(document.getElementById('masterText').innerText);
+            alert("Signal Copied.");
         }
     </script>
 </body>
