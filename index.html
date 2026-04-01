@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TransPoint PRO | Global AI Terminal</title>
+    <title>TransPoint | AI Phonetic Intelligence & Language Mastering</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
@@ -13,102 +13,219 @@
     <script src="https://pl29018799.profitablecpmratenetwork.com/5c/15/cb/5c15cbfea47513cdbf0692fbc831931e.js"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; }
-        .digital-box { background: #0f172a; border: 1px solid #1e293b; border-radius: 2.5rem; }
-        .neon-glow { border: 1px solid #2563eb; box-shadow: 0 0 30px rgba(37,99,235,0.2); }
-        .node-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 1.5rem; height: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.3s; }
-        .node-card:hover { border-color: #2563eb; transform: translateY(-5px); }
-        select { background: #1e293b; border: 1px solid #334155; border-radius: 0.75rem; padding: 0.5rem 1rem; font-size: 0.75rem; color: white; outline: none; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f1f5f9; scroll-behavior: smooth; }
+        .glass-nav { background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); }
+        .digital-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 2.5rem; transition: 0.3s; }
+        .neon-text { background: linear-gradient(90deg, #60a5fa, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn-main { background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); transition: 0.3s; }
+        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4); }
+        .node-box { background: #0f172a; border: 1px solid #1e293b; border-radius: 1.5rem; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.3s; }
+        .node-box:hover { border-color: #3b82f6; transform: translateY(-5px); }
+        select { background: #1e293b; border: 1px solid #334155; border-radius: 0.75rem; padding: 0.5rem; color: white; outline: none; font-size: 0.75rem; }
     </style>
 </head>
-<body class="p-6">
-    <nav class="max-w-5xl mx-auto flex justify-between items-center h-20 mb-12">
-        <div class="text-2xl font-black italic text-blue-500">TransPoint <span class="text-white">PRO</span></div>
-        <div class="space-x-8 text-[10px] font-bold uppercase tracking-widest text-slate-500">
-            <a href="/pricing">Pricing</a><a href="/setup">Console</a><a href="/support">Support</a>
+<body class="selection:bg-blue-500/30">
+
+    <!-- Navigation -->
+    <nav class="glass-nav sticky top-0 z-[100] border-b border-slate-800 h-20 flex items-center px-6">
+        <div class="max-w-6xl mx-auto w-full flex justify-between items-center">
+            <a href="/" class="text-2xl font-black italic tracking-tighter neon-text">TransPoint</a>
+            <div class="hidden md:flex space-x-10 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                <a href="#advantages" class="hover:text-blue-400 transition">Advantages</a>
+                <a href="#guide" class="hover:text-blue-400 transition">Guide</a>
+                <a href="/pricing" class="text-blue-500 underline underline-offset-4">PRO Terminal</a>
+            </div>
+            <a href="https://halftotake.gumroad.com/l/hahanq" target="_blank" class="bg-white text-slate-900 px-6 py-2 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-blue-500 hover:text-white transition">Connect Pro</a>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto">
-        <!-- Input Terminal -->
-        <section class="digital-box overflow-hidden mb-8">
-            <textarea id="inputText" class="w-full h-48 p-10 bg-transparent text-2xl font-bold outline-none placeholder:text-slate-800 resize-none" placeholder="Enter signal..."></textarea>
-            <div class="p-8 bg-black/20 border-t border-slate-800 flex flex-wrap justify-between items-center gap-6">
-                <div class="flex items-center space-x-4">
-                    <select id="srcLang"><option value="Korean">Korean</option><option value="English">English</option></select>
-                    <select id="targetLang"><option value="English">English</option><option value="Korean">Korean</option></select>
-                    <select id="phoneticMode" class="text-blue-400 border-blue-900">
-                        <option value="learn">Learning (Ex: 헬로우)</option><option value="teach">Teaching (Ex: Annyeong)</option>
+    <main class="max-w-5xl mx-auto px-6 pt-16 pb-32">
+        
+        <!-- Hero Section -->
+        <header class="text-center mb-24">
+            <h1 class="text-5xl md:text-8xl font-black mb-8 tracking-tighter leading-[0.9]">Beyond Words, <br><span class="neon-text">Master the Sound.</span></h1>
+            <p class="text-lg text-slate-400 max-w-2xl mx-auto font-medium leading-relaxed italic">The professional AI hub bridging the gap between machine translation and human pronunciation.</p>
+        </header>
+
+        <!-- 1. The Analyzer Terminal -->
+        <section class="digital-card overflow-hidden mb-12 shadow-2xl shadow-blue-900/10">
+            <textarea id="inputText" class="w-full h-52 p-10 bg-transparent text-2xl font-bold outline-none placeholder:text-slate-800 resize-none" placeholder="Enter signal to analyze..."></textarea>
+            
+            <div class="p-8 bg-black/30 border-t border-slate-800 flex flex-wrap justify-between items-center gap-6">
+                <div class="flex flex-wrap items-center gap-4">
+                    <select id="srcLang"><option value="Korean">Korean</option><option value="English">English</option><option value="Japanese">Japanese</option><option value="Chinese">Chinese</option></select>
+                    <i class="fa-solid fa-arrow-right-long text-slate-700"></i>
+                    <select id="targetLang"><option value="English">English</option><option value="Korean">Korean</option><option value="Japanese">Japanese</option><option value="Chinese">Chinese</option></select>
+                    <select id="phoneticMode" class="text-blue-400 border-blue-900/50">
+                        <option value="learn">Learn Mode (헬로우)</option>
+                        <option value="teach">Teach Mode (Annyeong)</option>
                     </select>
-                    <label class="flex items-center space-x-2 cursor-pointer">
+                    <label class="flex items-center space-x-2 cursor-pointer group">
                         <input type="checkbox" id="includePhonetic" checked class="w-4 h-4 accent-blue-600">
-                        <span class="text-[10px] font-black uppercase text-slate-500 tracking-widest">Add Phonetic</span>
+                        <span class="text-[10px] font-black uppercase text-slate-500 group-hover:text-blue-400 transition">Add Phonetic</span>
                     </label>
                 </div>
-                <button onclick="process()" id="runBtn" class="bg-blue-600 text-white px-12 py-3 rounded-2xl font-black uppercase text-xs shadow-lg hover:bg-blue-500 transition">Run Analysis</button>
+                <button onclick="process()" id="runBtn" class="btn-main text-white px-14 py-4 rounded-2xl font-black uppercase text-xs tracking-[0.2em] shadow-xl active:scale-95">Analyze Now</button>
             </div>
         </section>
 
-        <div class="flex justify-between px-2 mb-8">
-            <span id="charCounter" class="text-[9px] font-black text-slate-500 uppercase tracking-widest italic">Buffer: 0 / 100 chars</span>
+        <!-- Buffer Status & Usage Policy -->
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+            <div class="px-2">
+                <span id="charCounter" class="text-[10px] font-black text-slate-500 uppercase tracking-widest italic">Signal Buffer: 0 / 100 Chars</span>
+            </div>
+            <div class="bg-blue-900/20 border border-blue-800/30 rounded-2xl p-6 text-[11px] leading-relaxed text-blue-300 font-medium">
+                <i class="fa-solid fa-circle-info mr-2"></i> <strong>Standard Protocol:</strong> To ensure zero-latency for the global community, our standard AI node processes up to 100 characters per request. For unlimited streams, please integrate your personal API key.
+            </div>
         </div>
 
         <!-- [AD 3] Adstella Native Banner -->
-        <div class="mb-12 rounded-3xl overflow-hidden border border-slate-800 bg-black/40">
+        <div class="mb-16 rounded-[2rem] overflow-hidden border border-slate-800 bg-black/40">
+            <p class="text-center text-[8px] font-black text-slate-700 py-2 uppercase tracking-[0.5em]">Sponsored Intelligence Module</p>
             <script async="async" data-cfasync="false" src="https://pl29018798.profitablecpmratenetwork.com/63307b850bab2dc6d8d60fe1d4010b48/invoke.js"></script>
             <div id="container-63307b850bab2dc6d8d60fe1d4010b48"></div>
         </div>
 
         <!-- Master Unified Result Area -->
-        <section id="resultArea" class="hidden mb-12 animate-in fade-in zoom-in-95 duration-500">
-            <div class="digital-box neon-glow p-12 text-center relative overflow-hidden">
-                <div class="flex justify-between items-center mb-10">
-                    <span class="text-[10px] font-black text-blue-500 uppercase tracking-[0.5em] italic">Decoded Master Signal</span>
-                    <button onclick="copyAll()" class="text-[9px] font-black bg-slate-800 px-4 py-2 rounded-lg text-slate-400 hover:text-white transition">COPY MASTER</button>
+        <section id="resultArea" class="hidden mb-20 animate-in fade-in zoom-in-95 duration-700">
+            <div class="digital-card p-12 md:p-20 text-center relative overflow-hidden border-2 border-blue-600/30">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
+                
+                <div class="flex justify-between items-center mb-12">
+                    <span id="phoneticTitle" class="text-[10px] font-black text-blue-500 uppercase tracking-[0.5em] italic">Decoded Phonetic Stream</span>
+                    <button onclick="copyAll()" class="text-[9px] font-black bg-slate-800 px-5 py-2 rounded-lg text-slate-400 hover:bg-blue-600 hover:text-white transition uppercase tracking-widest">Copy Master</button>
                 </div>
-                <div id="masterText" class="text-4xl md:text-6xl font-black leading-tight mb-12 selection:bg-blue-600"></div>
-                <div class="pt-8 border-t border-slate-800 flex justify-center">
-                    <span class="text-[9px] font-bold text-slate-600 uppercase tracking-widest italic">Original Context: <span id="traceOriginal" class="ml-2 text-slate-500 not-italic"></span></span>
+
+                <div id="masterText" class="text-5xl md:text-7xl font-black leading-tight mb-16 selection:bg-blue-600 tracking-tighter"></div>
+                
+                <div class="pt-10 border-t border-slate-800 flex flex-col items-center">
+                    <span class="text-[10px] font-bold text-slate-600 uppercase tracking-[0.3em] italic mb-4">Original Trace Data</span>
+                    <p id="traceOriginal" class="text-slate-400 italic font-medium max-w-xl"></p>
                 </div>
             </div>
         </section>
 
-        <!-- Symmetrical Nodes (SaaS Style) -->
-        <div class="grid grid-cols-2 gap-4 mb-12">
-            <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=141918&url_id=23180" target="_blank" class="node-card">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white mb-2 shadow-lg"><i class="fa-solid fa-shield-halved"></i></div>
-                <span class="text-[10px] font-black uppercase tracking-widest">NordVPN</span>
+        <!-- Nord Security Nodes (Perfect Symmetry) -->
+        <section class="grid grid-cols-2 gap-4 mb-24">
+            <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=141918&url_id=23180" target="_blank" class="node-box group">
+                <div class="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-xl mb-3 shadow-lg shadow-blue-900/40 transition group-hover:rotate-12"><i class="fa-solid fa-shield-halved"></i></div>
+                <h4 class="font-black text-sm uppercase tracking-tight">NordVPN</h4>
+                <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mt-1">Privacy Protocol</p>
             </a>
-            <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=141918&url_id=32566" target="_blank" class="node-card">
-                <div class="w-10 h-10 bg-slate-700 rounded-xl flex items-center justify-center text-white mb-2 shadow-lg"><i class="fa-solid fa-key"></i></div>
-                <span class="text-[10px] font-black uppercase tracking-widest">NordPass</span>
+            <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=141918&url_id=32566" target="_blank" class="node-box group">
+                <div class="w-12 h-12 bg-slate-700 text-white rounded-2xl flex items-center justify-center text-xl mb-3 shadow-lg transition group-hover:rotate-12"><i class="fa-solid fa-key"></i></div>
+                <h4 class="font-black text-sm uppercase tracking-tight">NordPass</h4>
+                <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mt-1">Vault Security</p>
             </a>
-        </div>
+        </section>
 
-        <!-- Upgrade -->
-        <a href="/pricing" class="block bg-gradient-to-r from-blue-900 to-indigo-950 p-8 rounded-[2.5rem] border border-blue-800/40 text-center shadow-2xl hover:scale-[1.01] transition">
-            <h3 class="text-white font-black text-xl tracking-tight uppercase italic">Activate Unlimited PRO Console</h3>
-        </a>
+        <!-- 2. Advantages & Educational Value (SEO Content) -->
+        <section id="advantages" class="py-24 border-t border-slate-900">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl font-black mb-4 tracking-tighter italic">Why TransPoint Matters</h2>
+                <p class="text-slate-500 font-medium">Revolutionizing the way your brain processes new languages.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12 text-center">
+                <div>
+                    <div class="w-16 h-16 bg-blue-900/30 text-blue-400 rounded-3xl flex items-center justify-center mx-auto mb-6 text-2xl shadow-inner"><i class="fa-solid fa-brain"></i></div>
+                    <h3 class="text-lg font-bold mb-4">Cognitive Efficiency</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">By providing phonetic readings in your native script, we eliminate the 'alphabet barrier,' allowing you to speak instantly.</p>
+                </div>
+                <div>
+                    <div class="w-16 h-16 bg-purple-900/30 text-purple-400 rounded-3xl flex items-center justify-center mx-auto mb-6 text-2xl shadow-inner"><i class="fa-solid fa-diagram-project"></i></div>
+                    <h3 class="text-lg font-bold mb-4">Structural Clarity</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Our AI analyzes sentence structure to provide accurate phonetics that reflect real-world intonation and rhythm.</p>
+                </div>
+                <div>
+                    <div class="w-16 h-16 bg-emerald-900/30 text-emerald-400 rounded-3xl flex items-center justify-center mx-auto mb-6 text-2xl shadow-inner"><i class="fa-solid fa-bolt"></i></div>
+                    <h3 class="text-lg font-bold mb-4">Rapid Fluency</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Bridge the gap between reading and speaking. Master any language 3x faster with phonetic immersion.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Why Personal API Keys? (Polite Explanation) -->
+        <section class="bg-white text-slate-900 rounded-[3rem] p-12 md:p-20 shadow-2xl mb-24 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-10 opacity-[0.03] text-9xl font-black italic">PRIVATE</div>
+            <div class="relative z-10 max-w-3xl">
+                <h2 class="text-3xl font-black mb-8 italic tracking-tighter">Your Journey, Your Control.</h2>
+                <p class="text-lg font-semibold text-blue-600 mb-6 italic">"Why do we recommend using your own API Key?"</p>
+                <div class="space-y-6 text-slate-600 font-medium leading-relaxed">
+                    <p>At TransPoint, we believe in a <strong>decentralized AI future</strong>. By using your personal Gemini or ChatGPT API key, you establish a direct, private bridge to the world's most powerful language models.</p>
+                    <ul class="space-y-4 text-sm font-bold">
+                        <li class="flex items-start"><i class="fa-solid fa-shield-check text-blue-600 mt-1 mr-3"></i> <span><strong>100% Privacy:</strong> Your data never touches our servers. The analysis happens directly between you and the AI provider.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-gauge-high text-blue-600 mt-1 mr-3"></i> <span><strong>Priority Speed:</strong> No queues. You get the full bandwidth of your personal AI tier.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-leaf text-blue-600 mt-1 mr-3"></i> <span><strong>Sustainable Service:</strong> It allows us to keep TransPoint free of heavy subscription fees while maintaining premium quality.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Quick Usage Guide -->
+        <section id="guide" class="mb-24 px-6">
+            <h2 class="text-2xl font-black mb-12 text-center uppercase tracking-[0.5em] text-slate-700 italic">Operating Protocol</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <span class="text-4xl font-black text-slate-800">01</span>
+                    <h4 class="font-bold text-blue-400">Input</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed uppercase font-bold tracking-widest">Enter text into the analyzer terminal.</p>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-4xl font-black text-slate-800">02</span>
+                    <h4 class="font-bold text-blue-400">Mode</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed uppercase font-bold tracking-widest">Select 'Learn' to read the result or 'Teach' to show your sound.</p>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-4xl font-black text-slate-800">03</span>
+                    <h4 class="font-bold text-blue-400">Analyze</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed uppercase font-bold tracking-widest">Run the AI engine to decode phonetics and meaning.</p>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-4xl font-black text-slate-800">04</span>
+                    <h4 class="font-bold text-blue-400">PRO</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed uppercase font-bold tracking-widest">Connect your key for unlimited high-speed analysis.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRO CTA -->
+        <section class="bg-gradient-to-br from-[#0f172a] to-[#1e293b] rounded-[3rem] p-16 text-center border border-blue-900/30 shadow-3xl">
+            <h2 class="text-4xl font-black mb-6 neon-text italic tracking-tighter">Unlimited Fluency Terminal</h2>
+            <p class="text-slate-400 text-sm mb-12 font-medium">Unlock full-page translation and structural word mapping nodes.</p>
+            <a href="/pricing" class="inline-block btn-main px-16 py-5 rounded-[2rem] font-black uppercase text-sm tracking-[0.3em] shadow-2xl">Activate PRO Node</a>
+        </section>
+
     </main>
 
-    <footer class="mt-20 py-12 border-t border-slate-900 text-center">
-        <a href="https://www.buymeacoffee.com/djawjdaks8g" target="_blank" class="hover:scale-105 transition inline-block mb-10">
-            <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=djawjdaks8g&button_colour=ffffff&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00" class="h-10 rounded-xl">
-        </a>
-        <p class="text-[9px] font-black text-slate-800 uppercase tracking-[0.5em]">TransPoint Clarity Systems © 2026</p>
+    <!-- Support Footer -->
+    <footer class="bg-black border-t border-slate-900 py-24 text-center">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex justify-center space-x-12 mb-16 text-[11px] font-black text-slate-500 uppercase tracking-[0.3em]">
+                <a href="https://linktr.ee/dedle" target="_blank" class="hover:text-white transition">Linktree</a>
+                <a href="/privacy" class="hover:text-white transition">Privacy</a>
+                <a href="mailto:offthemain@proton.me" class="hover:text-white transition">Console Support</a>
+            </div>
+            <a href="https://www.buymeacoffee.com/djawjdaks8g" target="_blank" class="inline-block hover:scale-105 transition duration-500 mb-16">
+                <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=djawjdaks8g&button_colour=ffffff&font_colour=000000&font_family=Inter&outline_colour=ffffff&coffee_colour=FFDD00" class="h-12 rounded-xl shadow-2xl border border-white">
+            </a>
+            <p class="text-[10px] font-black text-slate-700 uppercase tracking-[0.5em] italic">TransPoint Clarity Systems © 2026</p>
+        </div>
     </footer>
 
     <!-- Polite Limit Modal -->
-    <div id="limitModal" class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-6">
-        <div class="bg-white text-slate-900 w-full max-w-lg rounded-[3rem] p-12 shadow-2xl text-center">
-            <h2 class="text-3xl font-black mb-4 tracking-tighter">Buffer Limit (100 Chars)</h2>
-            <p class="text-slate-500 mb-10 font-medium leading-relaxed italic">Our free tier processing unit is optimized for 100 characters. Choose a protocol to continue:</p>
-            <div class="space-y-3">
-                <button onclick="document.getElementById('limitModal').classList.add('hidden')" class="w-full p-5 border border-slate-200 rounded-2xl font-black text-xs uppercase tracking-widest text-slate-400">Shorten text</button>
-                <a href="/setup" class="w-full p-5 bg-blue-50 text-blue-600 rounded-2xl font-black text-xs uppercase tracking-widest block">Use Personal API Key</a>
-                <a href="/pricing" class="w-full p-6 bg-slate-900 text-white rounded-[2rem] font-black text-xs uppercase tracking-widest block shadow-xl">Upgrade to PRO</a>
+    <div id="limitModal" class="fixed inset-0 z-[200] hidden bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-6">
+        <div class="bg-white text-slate-900 w-full max-w-lg rounded-[3.5rem] p-12 shadow-3xl text-center">
+            <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-10 text-3xl"><i class="fa-solid fa-microchip"></i></div>
+            <h2 class="text-4xl font-black mb-6 tracking-tighter leading-none">Buffer Limit <br><span class="text-blue-600">(100 Chars)</span></h2>
+            <p class="text-slate-500 mb-12 font-medium leading-relaxed italic px-4 text-sm">To maintain our high-speed free processing unit for all users, requests are optimized for 100 characters. Please select a protocol to continue:</p>
+            
+            <div class="space-y-4">
+                <button onclick="document.getElementById('limitModal').classList.add('hidden')" class="w-full p-6 border border-slate-200 rounded-2xl font-black text-xs uppercase tracking-widest text-slate-400 hover:bg-slate-50 transition">Shorten Data Stream</button>
+                <a href="/setup" class="w-full p-6 bg-blue-50 text-blue-600 rounded-2xl font-black text-xs uppercase tracking-widest block hover:bg-blue-100 transition">Integrate Personal Key (FREE)</a>
+                <a href="/pricing" class="w-full p-7 bg-slate-900 text-white rounded-[2.5rem] font-black text-xs uppercase tracking-widest block shadow-2xl hover:scale-[1.02] transition">Switch to PRO Mode</a>
             </div>
+            <button onclick="document.getElementById('limitModal').classList.add('hidden')" class="mt-10 text-[10px] font-black text-slate-300 uppercase tracking-[0.3em] underline underline-offset-8">Bypass for now</button>
         </div>
     </div>
 
@@ -116,7 +233,7 @@
         const input = document.getElementById('inputText');
         input.addEventListener('input', () => {
             const len = input.value.length;
-            document.getElementById('charCounter').innerText = `Buffer: ${len} / 100 chars`;
+            document.getElementById('charCounter').innerText = `Signal Buffer: ${len} / 100 Chars`;
             document.getElementById('charCounter').style.color = len > 100 ? '#ef4444' : '#64748b';
         });
 
@@ -126,7 +243,7 @@
             if(text.length > 100) { document.getElementById('limitModal').classList.remove('hidden'); return; }
 
             const btn = document.getElementById('runBtn');
-            btn.disabled = true; btn.innerText = "Processing...";
+            btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-sync fa-spin mr-3"></i> DECODING';
 
             try {
                 const response = await fetch('/api/translate', {
@@ -141,21 +258,27 @@
                     })
                 });
 
-                const r = await response.json(); // [FIXED] res -> response 오타 수정
+                if(!response.ok) throw new Error('API Error');
+                
+                const r = await response.json();
                 const result = r.response ? JSON.parse(r.response.replace(/```json|```/g, '').trim()) : r;
                 
-                const pLine = result.phonetic && document.getElementById('includePhonetic').checked ? `\n(${result.phonetic})` : '';
+                const showPhonetic = document.getElementById('includePhonetic').checked;
+                const pLine = (result.phonetic && showPhonetic) ? `\n(${result.phonetic})` : '';
+                
                 document.getElementById('masterText').innerText = `${result.translation}${pLine}`;
                 document.getElementById('traceOriginal').innerText = text;
+                document.getElementById('phoneticTitle').innerText = document.getElementById('phoneticMode').value === 'learn' ? 'AI Phonetic Result (Learn)' : 'AI Source Phonetic (Teach)';
+                
                 document.getElementById('resultArea').classList.remove('hidden');
-                window.scrollTo({ top: document.getElementById('resultArea').offsetTop - 100, behavior: 'smooth' });
+                window.scrollTo({ top: document.getElementById('resultArea').offsetTop - 120, behavior: 'smooth' });
 
-            } catch (e) { alert("AI Terminal Error. Check AI Binding in Cloudflare."); console.error(e); }
-            finally { btn.disabled = false; btn.innerText = "Analyze Now"; }
+            } catch (e) { alert("Core Terminal Protocol Error. Please check AI Bindings."); console.error(e); }
+            finally { btn.disabled = false; btn.innerText = "Run Analysis"; }
         }
         function copyAll() {
             navigator.clipboard.writeText(document.getElementById('masterText').innerText);
-            alert("Signal Copied.");
+            alert("Signal Captured to Clipboard.");
         }
     </script>
 </body>
