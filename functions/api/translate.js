@@ -6,43 +6,33 @@ export async function onRequestPost(context) {
       messages: [
         {
           role: 'system',
-          content: `You are a professional linguistic analyzer. Output ONLY valid JSON, no explanation, no markdown.
+          content: `You are a professional lyric analyzer. You must output ONLY valid JSON. 
+          No markdown, no explanation.
+
+          PHONETIC SCRIPT RULE (STRICT):
+          - Mode 'learn': Provide the phonetic sound of the TRANSLATED text using the NATIVE SCRIPT of the SOURCE language (${src}).
+            * Example (src:Korean, target:English): "Hello" -> "헬로우" (In Hangul)
+            * Example (src:Japanese, target:English): "Hello" -> "ハロー" (In Katakana)
+            * Example (src:Russian, target:English): "Hello" -> "Хеллоу" (In Cyrillic)
           
-          FORMAT: {"lines": [{"original": "...", "phonetic": "...", "translation": "..."}]}
-          
-          PHONETIC RULES:
-          - mode 'learn': Provide phonetic of the ${target} translation using the native script of ${src}.
-            (Ex: src:KR, target:EN -> "Hello" is written as "헬로우" in Korean script)
-          - mode 'teach': Provide phonetic of the original ${src} text using the native script of ${target}.
-            (Ex: src:KR, target:EN -> "안녕하세요" is written as "Annyeong-haseyo" in English alphabet)`
+          - Mode 'teach': Provide the phonetic sound of the ORIGINAL text using the NATIVE SCRIPT of the TARGET language (${target}).
+            * Example (src:Korean, target:English): "안녕하세요" -> "Annyeong-haseyo" (In Latin)
+            * Example (src:Korean, target:Japanese): "안녕하세요" -> "アンニョンハセヨ" (In Katakana)
+
+          FORMAT: {"lines": [{"original": "...", "phonetic": "...", "translation": "..."}]}`
         },
-        { role: 'user', content: `Analyze in '${mode}' mode:\n\n${text}` }
+        { role: 'user', content: `Mode: ${mode}\nFrom: ${src}\nTo: ${target}\nText:\n${text}` }
       ]
     });
 
     const raw = response?.response || "";
-    // 정규표현식으로 JSON 블록만 추출
-    const match = raw.match(/\{[\s\S]*\}/);
-    if (!match) throw new Error("AI failed to generate a valid data structure.");
+    const match = raw.match(/\{[\s\S]*\}/); // AI가 설명을 붙여도 JSON만 추출
+    if (!match) throw new Error("AI Terminal Failure");
 
-    const parsed = JSON.parse(match[0]);
-    // 데이터 구조 유효성 검사
-    if (!parsed.lines) {
-        // 단일 객체로 왔을 경우를 대비해 배열로 감싸줌
-        parsed.lines = [parsed];
-    }
-
-    return new Response(JSON.stringify(parsed), {
-      headers: { 
-        'Content-Type': 'application/json', 
-        'Access-Control-Allow-Origin': '*' 
-      }
+    return new Response(match[0], {
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
     });
-
   } catch (e) {
-    return new Response(JSON.stringify({ error: e.message }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return new Response(JSON.stringify({ error: e.message }), { status: 500 });
   }
 }
