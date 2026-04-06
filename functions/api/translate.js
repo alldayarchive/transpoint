@@ -6,28 +6,29 @@ export async function onRequestPost(context) {
       messages: [
         {
           role: 'system',
-          content: `You are a professional lyric analyzer. You must output ONLY valid JSON. 
-          No markdown, no explanation.
+          content: `You are a world-class linguistic transcriber. You MUST output ONLY valid JSON. No talk. No markdown.
 
-          PHONETIC SCRIPT RULE (STRICT):
-          - Mode 'learn': Provide the phonetic sound of the TRANSLATED text using the NATIVE SCRIPT of the SOURCE language (${src}).
-            * Example (src:Korean, target:English): "Hello" -> "헬로우" (In Hangul)
-            * Example (src:Japanese, target:English): "Hello" -> "ハロー" (In Katakana)
-            * Example (src:Russian, target:English): "Hello" -> "Хеллоу" (In Cyrillic)
-          
-          - Mode 'teach': Provide the phonetic sound of the ORIGINAL text using the NATIVE SCRIPT of the TARGET language (${target}).
-            * Example (src:Korean, target:English): "안녕하세요" -> "Annyeong-haseyo" (In Latin)
-            * Example (src:Korean, target:Japanese): "안녕하세요" -> "アンニョンハセヨ" (In Katakana)
+          STRICT PHONETIC RULES:
+          1. mode 'learn' (The user wants to read the translation):
+             - Translate "${text}" to ${target}.
+             - Write the PRONUNCIATION of the ${target} result using the SCRIPT/ALPHABET of ${src}.
+             - EXAMPLE (src:Korean, target:English): "Hello" -> "헬로우" (Write in Hangul)
+             - EXAMPLE (src:Japanese, target:English): "Hello" -> "ハロー" (Write in Katakana)
 
-          FORMAT: {"lines": [{"original": "...", "phonetic": "...", "translation": "..."}]}`
+          2. mode 'teach' (The user wants to show their sound to foreigners):
+             - Translate "${text}" to ${target}.
+             - Write the PRONUNCIATION of the original ${src} text using the SCRIPT/ALPHABET of ${target}.
+             - EXAMPLE (src:Korean, target:English): "안녕하세요" -> "Annyeong-haseyo" (Write in Latin alphabet)
+
+          RETURN FORMAT: {"lines": [{"original": "...", "phonetic": "...", "translation": "..."}]}`
         },
-        { role: 'user', content: `Mode: ${mode}\nFrom: ${src}\nTo: ${target}\nText:\n${text}` }
+        { role: 'user', content: `Mode: ${mode} | From: ${src} | To: ${target} | Text: ${text}` }
       ]
     });
 
     const raw = response?.response || "";
-    const match = raw.match(/\{[\s\S]*\}/); // AI가 설명을 붙여도 JSON만 추출
-    if (!match) throw new Error("AI Terminal Failure");
+    const match = raw.match(/\{[\s\S]*\}/); // AI의 부가 설명을 잘라내고 JSON만 추출
+    if (!match) throw new Error("AI Terminal Response Error");
 
     return new Response(match[0], {
       headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
