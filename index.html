@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TransPoint PRO | Universal AI Terminal</title>
+    <title>TransPoint PRO | Global AI Terminal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
@@ -16,12 +16,12 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; scroll-behavior: smooth; }
         .digital-panel { background: #0f172a; border: 1px solid #1e293b; border-radius: 2.5rem; }
-        .neon-glow { border: 1px solid #2563eb; box-shadow: 0 0 50px rgba(37,99,235,0.15); }
-        .node-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 1.5rem; height: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.3s; }
+        .neon-glow { border: 1px solid #2563eb; box-shadow: 0 0 50px rgba(37,99,235,0.1); }
+        .node-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 1.5rem; height: 130px; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .node-card:hover { border-color: #2563eb; transform: translateY(-5px); }
-        .master-monitor { background: rgba(15, 23, 42, 0.6); border: 2px solid #1e293b; border-radius: 2.5rem; padding: 2.5rem; font-family: 'Inter', sans-serif; min-height: 250px; }
+        .result-screen { background: rgba(15, 23, 42, 0.5); border: 2px solid #1e293b; border-radius: 2.5rem; padding: 2.5rem; min-height: 250px; font-family: 'Inter', sans-serif; }
         .coffee-box { background: linear-gradient(135deg, #FFDD00 0%, #FBBF24 100%); color: #000; border-radius: 2.5rem; max-width: 500px; margin: 0 auto; border: 4px solid white; }
-        select { background: #1e293b; border: 1px solid #334155; border-radius: 0.75rem; padding: 0.5rem 1rem; color: white; outline: none; font-size: 0.75rem; cursor: pointer; }
+        select { background: #1e293b; border: 1px solid #334155; border-radius: 0.75rem; padding: 0.5rem 1rem; color: white; outline: none; font-size: 0.75rem; }
     </style>
 </head>
 <body class="p-6 selection:bg-blue-600">
@@ -29,40 +29,52 @@
     <nav class="max-w-6xl mx-auto flex justify-between items-center h-20 mb-16 px-4">
         <div class="text-3xl font-black italic tracking-tighter text-blue-500">TransPoint <span class="text-white">PRO</span></div>
         <div class="hidden md:flex space-x-12 text-[10px] font-black uppercase tracking-widest text-slate-500">
-            <a href="#advantages">Technology</a><a href="/pricing" class="text-blue-500 underline underline-offset-8">Terminal Access ($11)</a><a href="/support">Support</a>
+            <a href="#advantages">Advantages</a><a href="/pricing" class="text-blue-500 underline underline-offset-8">Terminal Access ($11)</a><a href="/support">Support</a>
         </div>
-        <button id="openConfig" class="w-11 h-11 bg-slate-800 rounded-xl border border-slate-700 text-slate-400 hover:text-white transition shadow-lg"><i class="fa-solid fa-sliders text-lg"></i></button>
+        <button id="openConfig" class="w-10 h-10 bg-slate-800 rounded-xl border border-slate-700 text-slate-400 hover:text-white transition shadow-lg"><i class="fa-solid fa-sliders text-lg"></i></button>
     </nav>
 
     <main class="max-w-5xl mx-auto">
         <header class="text-center mb-16">
-            <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tighter leading-none italic">Global <span class="text-blue-600">Transcription.</span></h1>
-            <p class="text-lg text-slate-500 font-medium italic">Read any language in your native script. Absolute clarity.</p>
+            <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tighter leading-none italic">Global <span class="text-blue-600">Linguistics.</span></h1>
+            <p class="text-lg text-slate-500 font-medium italic">Read any sound in your native script. Master the global rhythm.</p>
         </header>
 
-        <!-- [ANALYZER] -->
+        <!-- [ANALYZER INTERFACE] -->
         <section class="digital-panel overflow-hidden mb-8 shadow-2xl">
-            <textarea id="inputText" class="w-full h-64 p-10 bg-transparent text-2xl font-bold outline-none placeholder:text-slate-800 resize-none" placeholder="Paste lyrics or signal..."></textarea>
+            <textarea id="inputText" class="w-full h-64 p-10 bg-transparent text-2xl font-bold outline-none placeholder:text-slate-800 resize-none" placeholder="Enter lyrics or signal..."></textarea>
             <div class="p-8 bg-black/30 border-t border-slate-800 flex flex-wrap justify-between items-center gap-6">
                 <div class="flex flex-wrap items-center gap-4">
                     <select id="srcLang">
-                        <option value="Korean">Korean</option><option value="English">English</option><option value="Japanese">Japanese</option>
+                        <option value="Korean">Korean</option><option value="Japanese">Japanese</option><option value="English">English</option>
                         <option value="Spanish">Spanish</option><option value="Russian">Russian</option>
                     </select>
                     <i class="fa-solid fa-link text-slate-700"></i>
                     <select id="targetLang">
                         <option value="English">English</option><option value="Korean">Korean</option><option value="Japanese">Japanese</option>
+                        <option value="Spanish">Spanish</option>
                     </select>
                     <select id="pMode" class="text-blue-400 font-bold border-blue-900">
-                        <option value="learn">Learn: My Script (Ex: 헬로우)</option>
-                        <option value="teach">Teach: Their Script (Ex: Annyeong)</option>
+                        <option value="learn">Learn: My Script (헬로우/ハロー)</option>
+                        <option value="teach">Teach: Their Script (Annyeong)</option>
                     </select>
                 </div>
                 <button onclick="analyzeSignal()" id="runBtn" class="bg-blue-600 text-white px-12 py-4 rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl active:scale-95 transition">Analyze Now</button>
             </div>
         </section>
 
-        <div class="flex justify-between px-4 mb-16"><span id="buffer" class="text-[10px] font-black text-slate-600 uppercase italic">Signal Buffer: 0 / 100</span><div id="statusTag" class="text-[9px] font-bold text-blue-500 uppercase bg-blue-500/10 px-4 py-1.5 rounded-full border border-blue-500/20">Standard Tier</div></div>
+        <!-- Buffer Status -->
+        <div class="flex justify-between px-4 mb-16">
+            <span id="buffer" class="text-[10px] font-black text-slate-600 uppercase italic">Signal Buffer: 0 / 100</span>
+            <div id="statusTag" class="text-[9px] font-bold text-blue-500 uppercase bg-blue-500/10 px-4 py-1.5 rounded-full border border-blue-500/20 tracking-widest">Standard Tier</div>
+        </div>
+
+        <!-- [AD 3] Adstella Native (Commented)
+        <div class="mb-20 rounded-3xl overflow-hidden border border-slate-800 bg-black/40">
+            <script async="async" data-cfasync="false" src="https://pl29018798.profitablecpmratenetwork.com/63307b850bab2dc6d8d60fe1d4010b48/invoke.js"></script>
+            <div id="container-63307b850bab2dc6d8d60fe1d4010b48"></div>
+        </div>
+        -->
 
         <!-- [RESULTS] One-box Integrated View -->
         <section id="resultArea" class="hidden mb-24 animate-in fade-in zoom-in-95 duration-500">
@@ -70,12 +82,12 @@
                 <div class="flex flex-wrap justify-between items-center gap-6 mb-10 border-b border-slate-800 pb-8">
                     <div class="flex gap-8">
                         <label class="flex items-center space-x-2 text-[10px] font-black text-slate-500 cursor-pointer hover:text-white transition"><input type="checkbox" id="shOri" checked onchange="renderUI()" class="accent-blue-600 w-4 h-4"> <span>Original</span></label>
-                        <label class="flex items-center space-x-2 text-[10px] font-black text-blue-400 cursor-pointer hover:text-white transition"><input type="checkbox" id="shPho" checked onchange="renderUI()" class="accent-blue-600 w-4 h-4"> <span>Sound (Phonetic)</span></label>
+                        <label class="flex items-center space-x-2 text-[10px] font-black text-blue-400 cursor-pointer hover:text-white transition"><input type="checkbox" id="shPho" checked onchange="renderUI()" class="accent-blue-600 w-4 h-4"> <span>Phonetic</span></label>
                         <label class="flex items-center space-x-2 text-[10px] font-black text-slate-500 cursor-pointer hover:text-white transition"><input type="checkbox" id="shTra" checked onchange="renderUI()" class="accent-blue-600 w-4 h-4"> <span>Meaning</span></label>
                     </div>
                     <button onclick="copySignal()" class="bg-slate-800 text-white px-6 py-2 rounded-xl text-[10px] font-black hover:bg-blue-600 transition uppercase tracking-widest">Copy Master</button>
                 </div>
-                <div id="masterMonitor" class="master-monitor text-2xl md:text-3xl font-bold leading-relaxed selection:bg-blue-600 whitespace-pre-wrap"></div>
+                <div id="masterMonitor" class="result-screen text-2xl md:text-3xl font-bold leading-relaxed selection:bg-blue-600 whitespace-pre-wrap"></div>
             </div>
         </section>
 
@@ -85,18 +97,36 @@
             <a href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=141918&url_id=32566" target="_blank" class="node-card group"><div class="w-12 h-12 bg-slate-700 text-white rounded-2xl flex items-center justify-center text-xl mb-2 transition group-hover:rotate-12 shadow-lg"><i class="fa-solid fa-key"></i></div><span class="text-[10px] font-black uppercase text-slate-500">NordPass Vault</span></a>
         </section>
 
-        <!-- PRO Center Section -->
-        <section id="pro-section" class="max-w-3xl mx-auto py-24 px-10 digital-panel border-2 border-blue-600 text-center shadow-3xl mb-32 relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-10 opacity-5 text-8xl font-black italic">PRO</div>
-            <h2 class="text-4xl font-black mb-6 italic tracking-tighter uppercase">Activate Unlimited Terminal</h2>
-            <div class="text-7xl font-black mb-8 text-blue-500">$11 <span class="text-xl text-slate-600 font-medium">/ mo</span></div>
-            <a href="https://halftotake.gumroad.com/l/hahanq" target="_blank" class="inline-block bg-blue-600 text-white px-20 py-5 rounded-2xl font-black uppercase text-xs tracking-[0.4em] hover:bg-white hover:text-blue-600 transition">Establish Connection</a>
+        <!-- Advantages Section -->
+        <section id="advantages" class="bg-white text-slate-900 rounded-[3.5rem] p-12 md:p-24 shadow-3xl mb-24 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-10 opacity-[0.04] text-[12rem] font-black italic">SAAS</div>
+            <h2 class="text-4xl font-black mb-12 italic tracking-tighter">Global Technology.</h2>
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="space-y-8">
+                    <p class="text-xl font-bold text-blue-600 italic">"Why TransPoint is a world-first tool."</p>
+                    <ul class="space-y-6 text-sm font-bold text-slate-600">
+                        <li class="flex items-start"><i class="fa-solid fa-earth-americas text-blue-500 mt-1 mr-4"></i> <span><strong>Script Independence:</strong> Whether you use Hangul, Katakana, or Cyrillic, we map the world's sounds to your native script.</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-bolt text-blue-500 mt-1 mr-4"></i> <span><strong>Instant Lyric Mastering:</strong> Sing along to any international hit instantly with professional phonetic analysis.</span></li>
+                    </ul>
+                </div>
+                <div class="bg-slate-100 rounded-[3rem] p-10 flex flex-col justify-center">
+                    <p class="text-slate-700 text-base font-bold italic leading-relaxed">"One terminal to connect all scripts. Break the alphabet barrier today."</p>
+                </div>
+            </div>
         </section>
 
-        <!-- Buy Me a Coffee -->
-        <section class="coffee-box p-12 text-center shadow-2xl mb-32 border-2 border-white/10 transform hover:scale-[1.02] transition duration-500">
+        <!-- PRO Center Section -->
+        <section id="pro-section" class="max-w-3xl mx-auto py-24 px-10 digital-panel border-2 border-blue-600 text-center shadow-3xl mb-32 relative overflow-hidden">
+            <h2 class="text-4xl font-black mb-6 italic tracking-tighter uppercase">Activate Unlimited Terminal</h2>
+            <div class="text-7xl font-black mb-8 text-blue-500">$11 <span class="text-xl text-slate-600 font-medium">/ mo</span></div>
+            <a href="https://halftotake.gumroad.com/l/hahanq" target="_blank" class="inline-block bg-blue-600 text-white px-20 py-5 rounded-2xl font-black uppercase text-xs tracking-[0.4em] shadow-2xl hover:bg-white hover:text-blue-600 transition">Establish Connection</a>
+        </section>
+
+        <!-- [BUY ME A COFFEE] Appropriately Sized -->
+        <section class="coffee-box p-12 text-center shadow-2xl mb-32 transform hover:scale-[1.02] transition duration-500">
             <i class="fa-solid fa-mug-hot text-5xl mb-6"></i>
             <h2 class="text-3xl font-black mb-4 tracking-tighter">Support AI Research</h2>
+            <p class="text-sm font-bold mb-10 opacity-70 italic">"Help us maintain global script accuracy."</p>
             <a href="https://www.buymeacoffee.com/djawjdaks8g" target="_blank" class="inline-block bg-black text-white px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-slate-800 transition shadow-xl">Buy us a coffee ☕</a>
         </section>
     </main>
@@ -152,12 +182,10 @@
             try {
                 let data;
                 if (userKey) {
-                    const prompt = `Linguistic transcription analysis from ${src} to ${target}.
-                    STRICT RULES:
-                    - If mode='learn', write sound of ${target} using ${src} script. (Ex: "Hello" -> "헬로우" in KR script)
-                    - If mode='teach', write sound of ${src} using ${target} script. (Ex: "안녕" -> "Annyeong" in EN script)
-                    Text: ${text} | Mode: ${mode}
-                    Return ONLY JSON: {"lines": [{"original": "...", "phonetic": "...", "translation": "..."}]}`;
+                    const prompt = `Task: Transcribe sounds using ${mode === 'learn' ? src : target} script.
+                    Mode: ${mode} | From: ${src} to ${target}.
+                    Return ONLY valid JSON: {"lines": [{"original": "...", "phonetic": "...", "translation": "..."}]}.
+                    Input: ${text}`;
 
                     const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${userKey}`, {
                         method: 'POST',
@@ -180,7 +208,7 @@
                 document.getElementById('resultArea').classList.remove('hidden');
                 window.scrollTo({ top: document.getElementById('resultArea').offsetTop - 120, behavior: 'smooth' });
 
-            } catch (e) { alert("Terminal error. AI busy."); }
+            } catch (e) { alert("Analysis failed: " + e.message); }
             finally { btn.disabled = false; btn.innerText = "Analyze Now"; }
         }
 
@@ -190,114 +218,14 @@
             const t = document.getElementById('shTra').checked;
             let html = "";
             currentResLines.forEach(l => {
-                if(o) html += `<div class="text-[12px] text-slate-600 mb-1 font-bold italic opacity-60 uppercase">${l.original}</div>`;
+                if(o) html += `<div class="text-[12px] text-slate-600 mb-1 italic opacity-60 uppercase tracking-widest">${l.original}</div>`;
                 if(p) html += `<div class="text-blue-400 mb-1 font-black">${l.phonetic}</div>`;
                 if(t) html += `<div class="text-white mb-10 font-black">${l.translation}</div>`;
             });
-            document.getElementById('masterMonitor').innerHTML = html;
+            document.getElementById('masterMonitor').innerHTML = html || "Select data layers.";
         }
 
         function copySignal() { navigator.clipboard.writeText(document.getElementById('masterMonitor').innerText); alert("Captured."); }
-    <script>
-    let currentResLines = [];
-    const input = document.getElementById('inputText');
-    const modal = document.getElementById('modal');
-    const userKey = localStorage.getItem('tp_key');
-
-    // [Config] Settings Modal Logic
-    document.getElementById('openConfig').onclick = () => modal.classList.remove('hidden');
-    document.getElementById('close').onclick = () => modal.classList.add('hidden');
-    document.getElementById('save').onclick = () => {
-        localStorage.setItem('tp_key', document.getElementById('uKeyIn').value);
-        alert("Digital connection established.");
-        location.reload();
-    };
-
-    // Status Display
-    if(userKey) {
-        document.getElementById('statusTag').innerText = "UNLIMITED KEY ACTIVE";
-        document.getElementById('statusTag').className = "text-[9px] font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20";
-    }
-
-    input.addEventListener('input', () => {
-        const len = input.value.length;
-        document.getElementById('buffer').innerText = `Signal Buffer: ${len} / 100`;
-        if(!userKey) document.getElementById('buffer').style.color = len > 100 ? '#ef4444' : '#64748b';
-    });
-
-    // [Core Logic] 
-    async function executeAnalysis() {
-        const text = input.value;
-        if(!text) return;
-        if(!userKey && text.length > 100) { alert("Buffer limit exceeded."); return; }
-
-        const btn = document.getElementById('runBtn');
-        btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-sync fa-spin"></i>';
-
-        const src = document.getElementById('srcLang').value;
-        const target = document.getElementById('targetLang').value;
-        const mode = document.getElementById('pMode').value;
-
-        try {
-            let data;
-            if (userKey) {
-                // [STRICT PROMPT] Using personal API key
-                const prompt = `Task: Linguistic analysis. Output valid JSON only.
-                Rules:
-                - If mode is 'learn', write the phonetic of ${target} using ${src} script. 
-                  Example: If src is Korean, phonetic must be in Hangul (Ex: "헬로우"). DO NOT use English letters.
-                - If mode is 'teach', write the phonetic of ${src} using ${target} script.
-                Format: {"lines": [{"original": "...", "phonetic": "...", "translation": "..."}]}
-                Mode: ${mode} | From: ${src} | To: ${target}
-                Input: ${text}`;
-
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${userKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-                });
-                const j = await res.json();
-                const raw = j.candidates[0].content.parts[0].text;
-                data = JSON.parse(raw.match(/\{[\s\S]*\}/)[0]);
-            } else {
-                // Cloudflare server call
-                const res = await fetch('/api/translate', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ text, src, target, mode })
-                });
-                data = await res.json();
-            }
-
-            currentResLines = data.lines || [data];
-            renderUI();
-            document.getElementById('resultArea').classList.remove('hidden');
-            window.scrollTo({ top: document.getElementById('resultArea').offsetTop - 120, behavior: 'smooth' });
-
-        } catch (e) { alert("Terminal Error: " + e.message); console.error(e); }
-        finally { btn.disabled = false; btn.innerText = "Analyze Now"; }
-    }
-
-    function renderUI() {
-        const o = document.getElementById('shOri').checked;
-        const p = document.getElementById('shPho').checked;
-        const t = document.getElementById('shTra').checked;
-        const monitor = document.getElementById('masterMonitor');
-        
-        let html = "";
-        currentResLines.forEach(l => {
-            if(o) html += `<div class="text-[12px] text-slate-600 mb-1 italic opacity-60 uppercase">${l.original}</div>`;
-            if(p) html += `<div class="text-blue-400 mb-1 font-black">${l.phonetic}</div>`;
-            if(t) html += `<div class="text-white mb-10 font-black">${l.translation}</div>`;
-        });
-        monitor.innerHTML = html || "Select data layers.";
-    }
-
-    function copySignal() {
-        const text = document.getElementById('masterMonitor').innerText;
-        navigator.clipboard.writeText(text);
-        alert("Signal Captured.");
-    }
-</script>
+    </script>
 </body>
 </html>
