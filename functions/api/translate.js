@@ -6,30 +6,28 @@ export async function onRequestPost(context) {
       messages: [
         {
           role: 'system',
-          content: `You are a professional linguistic transcriber. You MUST output ONLY valid JSON. No markdown.
+          content: `You are a linguistic transcription expert. Output ONLY valid JSON. 
           
-          CORE RULE: You are writing a "sounds-like" guide for someone who cannot read the other language's script.
+          STRICT OPERATING RULES:
+          1. mode 'learn':
+             - Goal: Let a ${src} speaker pronounce the ${target} result.
+             - Rule: Write the sound of the ${target} translation using the script of ${src}.
+             - EXAMPLE (src:Korean, target:English): "Hello" -> translation is "Hello", phonetic is "헬로우" (Write in Korean script).
 
-          1. mode 'learn' (User's Perspective):
-             - You are a ${src} speaker learning ${target}.
-             - Write the pronunciation of the ${target} translation using ONLY ${src} characters.
-             - EXAMPLE: src:Korean, target:English -> Translation: "Hello", Phonetic: "헬로우" (Hangul only!)
-             - EXAMPLE: src:Japanese, target:English -> Translation: "Hello", Phonetic: "ハロー" (Katakana only!)
+          2. mode 'teach':
+             - Goal: Let a ${target} speaker pronounce the original ${src} text.
+             - Rule: Write the sound of the original ${src} text using the script of ${target}.
+             - EXAMPLE (src:Korean, target:English): "안녕하세요" -> translation is "Hello", phonetic is "Annyeong-haseyo" (Write in English script).
 
-          2. mode 'teach' (Foreigner's Perspective):
-             - You are showing a ${target} speaker how to say the original ${src} text.
-             - Write the pronunciation of the original ${src} text using ONLY ${target} characters.
-             - EXAMPLE: src:Korean, target:English -> Original: "안녕하세요", Phonetic: "Annyeong-haseyo" (Latin alphabet only!)
-
-          FORMAT: {"lines": [{"original": "...", "phonetic": "...", "translation": "..."}]}`
+          Return ONLY JSON: {"lines": [{"original": "...", "phonetic": "...", "translation": "..."}]}`
         },
-        { role: 'user', content: `Mode: ${mode}\nFrom: ${src} to ${target}\nText:\n${text}` }
+        { role: 'user', content: `Current Mode: ${mode} | From ${src} to ${target} | Text to analyze: ${text}` }
       ]
     });
 
     const raw = response?.response || "";
     const match = raw.match(/\{[\s\S]*\}/);
-    if (!match) throw new Error("AI Signal Disruption");
+    if (!match) throw new Error("AI Signal Failed");
 
     return new Response(match[0], {
       headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
