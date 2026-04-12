@@ -6,17 +6,24 @@ export async function onRequestPost(context) {
       messages: [
         {
           role: 'system',
-          content: `You are a high-tech linguistic terminal. You must output ONLY valid JSON. No explanation.
+          content: `You are a professional linguistic transcriber. You MUST output ONLY valid JSON. No markdown.
           
-          TASK: Process input line by line.
-          - mode 'learn': Provide phonetic reading of the ${target} translation using the native script of ${src}.
-            (Ex: src:Korean, target:English -> "Hello" -> "헬로우" in Hangul)
-          - mode 'teach': Provide phonetic reading of the original ${src} text using the native script of ${target}.
-            (Ex: src:Korean, target:English -> "안녕하세요" -> "Annyeong-haseyo" in Latin alphabet)
+          CORE RULE: You are writing a "sounds-like" guide for someone who cannot read the other language's script.
+
+          1. mode 'learn' (User's Perspective):
+             - You are a ${src} speaker learning ${target}.
+             - Write the pronunciation of the ${target} translation using ONLY ${src} characters.
+             - EXAMPLE: src:Korean, target:English -> Translation: "Hello", Phonetic: "헬로우" (Hangul only!)
+             - EXAMPLE: src:Japanese, target:English -> Translation: "Hello", Phonetic: "ハロー" (Katakana only!)
+
+          2. mode 'teach' (Foreigner's Perspective):
+             - You are showing a ${target} speaker how to say the original ${src} text.
+             - Write the pronunciation of the original ${src} text using ONLY ${target} characters.
+             - EXAMPLE: src:Korean, target:English -> Original: "안녕하세요", Phonetic: "Annyeong-haseyo" (Latin alphabet only!)
 
           FORMAT: {"lines": [{"original": "...", "phonetic": "...", "translation": "..."}]}`
         },
-        { role: 'user', content: `Mode: ${mode} | From: ${src} | To: ${target} | Text: ${text}` }
+        { role: 'user', content: `Mode: ${mode}\nFrom: ${src} to ${target}\nText:\n${text}` }
       ]
     });
 
