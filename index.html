@@ -198,6 +198,106 @@
         }
 
         function copySignal() { navigator.clipboard.writeText(document.getElementById('masterMonitor').innerText); alert("Captured."); }
-    </script>
+    <script>
+    let currentResLines = [];
+    const input = document.getElementById('inputText');
+    const modal = document.getElementById('modal');
+    const userKey = localStorage.getItem('tp_key');
+
+    // [Config] Settings Modal Logic
+    document.getElementById('openConfig').onclick = () => modal.classList.remove('hidden');
+    document.getElementById('close').onclick = () => modal.classList.add('hidden');
+    document.getElementById('save').onclick = () => {
+        localStorage.setItem('tp_key', document.getElementById('uKeyIn').value);
+        alert("Digital connection established.");
+        location.reload();
+    };
+
+    // Status Display
+    if(userKey) {
+        document.getElementById('statusTag').innerText = "UNLIMITED KEY ACTIVE";
+        document.getElementById('statusTag').className = "text-[9px] font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20";
+    }
+
+    input.addEventListener('input', () => {
+        const len = input.value.length;
+        document.getElementById('buffer').innerText = `Signal Buffer: ${len} / 100`;
+        if(!userKey) document.getElementById('buffer').style.color = len > 100 ? '#ef4444' : '#64748b';
+    });
+
+    // [Core Logic] 
+    async function executeAnalysis() {
+        const text = input.value;
+        if(!text) return;
+        if(!userKey && text.length > 100) { alert("Buffer limit exceeded."); return; }
+
+        const btn = document.getElementById('runBtn');
+        btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-sync fa-spin"></i>';
+
+        const src = document.getElementById('srcLang').value;
+        const target = document.getElementById('targetLang').value;
+        const mode = document.getElementById('pMode').value;
+
+        try {
+            let data;
+            if (userKey) {
+                // [STRICT PROMPT] Using personal API key
+                const prompt = `Task: Linguistic analysis. Output valid JSON only.
+                Rules:
+                - If mode is 'learn', write the phonetic of ${target} using ${src} script. 
+                  Example: If src is Korean, phonetic must be in Hangul (Ex: "헬로우"). DO NOT use English letters.
+                - If mode is 'teach', write the phonetic of ${src} using ${target} script.
+                Format: {"lines": [{"original": "...", "phonetic": "...", "translation": "..."}]}
+                Mode: ${mode} | From: ${src} | To: ${target}
+                Input: ${text}`;
+
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${userKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+                const j = await res.json();
+                const raw = j.candidates[0].content.parts[0].text;
+                data = JSON.parse(raw.match(/\{[\s\S]*\}/)[0]);
+            } else {
+                // Cloudflare server call
+                const res = await fetch('/api/translate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text, src, target, mode })
+                });
+                data = await res.json();
+            }
+
+            currentResLines = data.lines || [data];
+            renderUI();
+            document.getElementById('resultArea').classList.remove('hidden');
+            window.scrollTo({ top: document.getElementById('resultArea').offsetTop - 120, behavior: 'smooth' });
+
+        } catch (e) { alert("Terminal Error: " + e.message); console.error(e); }
+        finally { btn.disabled = false; btn.innerText = "Analyze Now"; }
+    }
+
+    function renderUI() {
+        const o = document.getElementById('shOri').checked;
+        const p = document.getElementById('shPho').checked;
+        const t = document.getElementById('shTra').checked;
+        const monitor = document.getElementById('masterMonitor');
+        
+        let html = "";
+        currentResLines.forEach(l => {
+            if(o) html += `<div class="text-[12px] text-slate-600 mb-1 italic opacity-60 uppercase">${l.original}</div>`;
+            if(p) html += `<div class="text-blue-400 mb-1 font-black">${l.phonetic}</div>`;
+            if(t) html += `<div class="text-white mb-10 font-black">${l.translation}</div>`;
+        });
+        monitor.innerHTML = html || "Select data layers.";
+    }
+
+    function copySignal() {
+        const text = document.getElementById('masterMonitor').innerText;
+        navigator.clipboard.writeText(text);
+        alert("Signal Captured.");
+    }
+</script>
 </body>
 </html>
