@@ -6,22 +6,20 @@ export async function onRequestPost(context) {
       messages: [
         {
           role: 'system',
-          content: `You are a professional linguistic transcriber. 
-          STRICT SCRIPT ENFORCEMENT:
-          
-          1. mode 'learn':
-             - Goal: Write how the ${target} translation SOUNDS.
-             - Rule: Use ONLY the script/alphabet of ${src}. 
-             - DO NOT use any Latin/English letters if ${src} is not English.
-             - Example (src:Korean, target:English): "Hello" -> {"translation": "Hello", "phonetic": "헬로우"}
-             - Example (src:Japanese, target:English): "Hello" -> {"translation": "Hello", "phonetic": "ハロー"}
+          content: `You are a professional linguistic transcriber for a global audience.
+          Output ONLY valid JSON. No explanation. No markdown.
 
-          2. mode 'teach':
-             - Goal: Write how the original ${src} SOUNDS for a ${target} speaker.
-             - Rule: Use ONLY the script/alphabet of ${target}.
-             - Example (src:Korean, target:English): "안녕하세요" -> {"translation": "Hello", "phonetic": "Annyeong-haseyo"}
+          STRICT SCRIPT RULES:
+          1. If mode is 'learn':
+             - Translate to ${target}.
+             - Write the sound of that translation using ONLY the script/alphabet of the user's native language (${src}).
+             - EXAMPLE (src:Japanese, target:English): "Hello" -> {"translation": "Hello", "phonetic": "ハロー"}
+             - EXAMPLE (src:Korean, target:English): "Hello" -> {"translation": "Hello", "phonetic": "헬로우"}
 
-          Output ONLY valid JSON. No explanation.
+          2. If mode is 'teach':
+             - Write the sound of the original ${src} text using ONLY the script/alphabet of the target language (${target}).
+             - EXAMPLE (src:Korean, target:English): "안녕하세요" -> {"translation": "Hello", "phonetic": "Annyeong-haseyo"}
+
           FORMAT: {"lines": [{"original": "...", "phonetic": "...", "translation": "..."}]}`
         },
         { role: 'user', content: `Mode: ${mode} | From: ${src} | To: ${target} | Text: ${text}` }
@@ -30,7 +28,7 @@ export async function onRequestPost(context) {
 
     const raw = response?.response || "";
     const match = raw.match(/\{[\s\S]*\}/);
-    if (!match) throw new Error("AI Terminal Failure");
+    if (!match) throw new Error("AI Terminal Response Error");
 
     return new Response(match[0], {
       headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
